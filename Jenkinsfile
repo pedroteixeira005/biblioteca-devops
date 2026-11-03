@@ -18,6 +18,12 @@ pipeline {
                 sh 'python3 --version'
             }
         }
+
+	stage('Build') {
+    steps {
+        sh 'python3 -m compileall -q src tests'
+    }
+}
  
         stage('Instalar dependências') {
             steps {

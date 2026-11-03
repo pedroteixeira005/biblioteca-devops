@@ -10,3 +10,13 @@ def livro_valido(livro):
         and livro.get("titulo") != ""
         and livro.get("autor") != ""
     )
+
+def buscar_livro(titulo, livros):
+    if titulo == "":
+        return None
+
+    for livro in livros:
+        if livro["titulo"] == titulo:
+            return livro
+
+    return None

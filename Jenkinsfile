@@ -48,3 +48,9 @@ pipeline {
         }
     }
 }
+	
+	stage('Build') {
+    steps {
+        sh 'python3 -m compileall -q src tests'
+    }
+}

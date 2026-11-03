@@ -1,17 +1,18 @@
+
 pipeline {
     agent any
- 
+
     options {
         timestamps()
     }
- 
+
     stages {
         stage('Checkout') {
             steps {
                 checkout scm
             }
         }
- 
+
         stage('Verificar ambiente') {
             steps {
                 sh 'git --version'
@@ -19,12 +20,12 @@ pipeline {
             }
         }
 
-	stage('Build') {
-    steps {
-        sh 'python3 -m compileall -q src tests'
-    }
-}
- 
+        stage('Build') {
+            steps {
+                sh 'python3 -m compileall -q src tests'
+            }
+        }
+
         stage('Instalar dependências') {
             steps {
                 sh '''
@@ -34,29 +35,26 @@ pipeline {
                 '''
             }
         }
- 
+
         stage('Testes') {
             steps {
                 sh '.venv/bin/python -m pytest -v'
             }
         }
     }
- 
+
     post {
         success {
             echo 'Pipeline concluído com sucesso!'
         }
+
         failure {
             echo 'Falha no pipeline. Consulte os logs.'
         }
+
         always {
             echo 'Execução finalizada.'
         }
     }
 }
-	
-	stage('Build') {
-    steps {
-        sh 'python3 -m compileall -q src tests'
-    }
-}
+

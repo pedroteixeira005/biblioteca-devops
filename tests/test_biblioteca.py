@@ -26,7 +26,7 @@ def test_buscar_livro_encontrado():
     ]
 
     resultado = buscar_livro("Clean Code", livros)
-    assert resultado["titulo"] == "Clean Code"
+    assert resultado["titulo"] == "Livro Incorreto"
 
 
 def test_buscar_livro_nao_encontrado():
